@@ -1,0 +1,5 @@
+So my first intution  to this problem was to find the product of every single element in the array and then find the first sqrt element . 
+This could have been corrected but the array gets manipulated .
+Also the product will just  be too big .
+doosra solution can be calcuating the number of 2's in the array if the number of 2s is equal in the 0---->k to k--->n-1
+This summarises the solution 
