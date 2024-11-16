@@ -1,0 +1,48 @@
+1805-A we need the zero 
+
+
+firstly kuch smjh ni aara whats happening 
+its more like a brute force thing ig but idk
+ simple approach yehi hoga ki ek b check krne wala function banaya jaye and fir 
+ usme looop chalakr check kiy jaye 
+
+
+
+simple tha 
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt(); // Number of test cases
+        StringBuilder output = new StringBuilder();
+        
+        while (t-- > 0) {
+            int n = sc.nextInt(); // Size of the array
+            int[] a = new int[n];
+            for (int i = 0; i < n; i++) {
+                a[i] = sc.nextInt();
+            }
+            
+            int result = -1;
+            for (int x = 0; x < 256; x++) { // Iterate over all possible x
+                int transformedXOR = 0;
+                for (int i = 0; i < n; i++) {
+                    transformedXOR ^= (a[i] ^ x); // XOR after transformation
+                }
+                if (transformedXOR == 0) {
+                    result = x;
+                    break;
+                }
+            }
+            output.append(result).append("\n");
+        }
+        
+        System.out.print(output);
+        sc.close();
+    }
+}
+
+
+
+easyyy piizziii
