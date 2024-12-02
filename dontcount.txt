@@ -1,0 +1,13 @@
+i dont have an idea for now maybe i have a solution for same characters but for different characters i dont know what i should be doing 
+maybe it can be done in python
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    m = int(input())
+    x =input()
+    s =input()
+    k=0
+    while(s not in x ):
+        x=x+x
+        k=k+1
+    print(k)    i am using this code but i am getting runtime error 
