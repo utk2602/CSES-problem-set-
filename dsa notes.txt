@@ -1,0 +1,447 @@
+My weak points for DSA while practicing A2Z
+Kadane's Algo
+Starting off with striver dp playlist
+remember the past
+Tabulation(Bottom up dp)  and memoization way (top down way)
+Pre requisite recursion 
+
+
+
+
+
+Fibonacci number 
+0,1,1,2,3,5,8,13,21.....
+f(n) = f(n-1)+f(n-2)
+
+
+
+draw the recursionn tree
+ n =5 
+f(5) points to f(4) and f(3) which points to f(3),f(2) and f(1),f(2) respectively and on...
+overlapping sub problems can be avoided by the use of DP
+Memoization -> we tend to store the value of sub problems in some map/table.
+
+dp solution for Fibonacci number 
+
+dp[n+1]-->> length or size of the 1d array
+dp[n] = dp[n-1] + dp[n-2]
+
+
+
+steps 
+0) declare an array by checking the size of the array 
+1) storing the values in the array 
+2) checking if the subproblem has been solved or not 
+
+
+
+
+how to convert the Recursion to Tabulation (Bottom -up)
+try to go from the Base case to the required ans 
+
+Solving the question in constant space complexity 
+
+imagine the array as dots
+. . . . . . . . . . . . . . . 
+
+use prev2 and prev
+curr = prev + prev2;
+prev2 = prev 
+prev = curr
+
+print(prev)
+
+
+Frog jump question 
+
+10 20 30 10 
+0  1  2  3
+absolute difference 
+
+
+
+
+*******************************
+Recursion -> All possible ways 
+count all ways 
+*******************************
+Greedy doesnt work in this case since it gives the best initial  step not the best overall solution
+while checking all possible ways look out for DP rather than GREEDY
+
+
+
+start off with recursion 
+1) indexing 
+2) Do all stuffs on that index
+3) Take the min of all stuffs
+
+
+f(n-1)->MiN ENERGY  required to reach (n-1) from 0
+f(ct)
+{
+if(ct==0) return 0;
+left = f(md-1) + abs(a[md]-a[md-1]);
+if(md>1)
+right = f(md-2) + abs(a[md]-a[md-2]);
+return min(left,right);
+}
+
+
+198. House Robber
+Medium
+Topics
+Companies
+You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is that adjacent houses have security systems connected and it will automatically contact the police if two adjacent houses were broken into on the same night.
+
+Given an integer array nums representing the amount of money of each house, return the maximum amount of money you can rob tonight without alerting the police.
+Example 1:
+
+Input: nums = [1,2,3,1]
+Output: 4
+Explanation: Rob house 1 (money = 1) and then rob house 3 (money = 3).
+Total amount you can rob = 1 + 3 = 4.
+Example 2:
+
+Input: nums = [2,7,9,3,1]
+Output: 12
+Explanation: Rob house 1 (money = 2), rob house 3 (money = 9) and rob house 5 (money = 1).
+Total amount you can rob = 2 + 9 + 1 = 12.
+
+
+
+ int [] dp = new int[arr.length+1];
+       dp[0]=0;
+    
+       for(int i =1; i <N;i++){
+        int l = dp[i-1]+Math.abs(arr[i]-arr[i-1]);
+        int r = Integer.MAX_VALUE;
+        if(i>1){
+         r = dp[i-2]+Math.abs(arr[i]-arr[i-2]);
+        }
+        dp[i]=Math.min(r,l);
+       }
+       return dp[arr.length-1];//base approach 
+}
+}
+
+
+Modified approach 
+ int [] dp = new int[arr.length+1];
+       dp[0]=0;
+    
+       for(int i =1; i <N;i++){
+        
+        if(ind-i>0){
+         r = dp[ind -i]+Math.abs(arr[i]-arr[ind-i]);
+        }
+        dp[i]=Math.max(r,l);
+       }
+       return dp[arr.length-1];modified approach 
+
+}
+}
+
+
+
+Maximum sum of non adjacent elements 
+lets try all the subsequences and then get the max sum
+
+Geek is going for a training program. He can perform any of these activities: Running, Fighting, and Learning Practice. Each activity has some point on each day. As Geek wants to improve all his skills, he can't do the same activity on two consecutive days. Help Geek to maximize his merit points as you are given a 2D array of points arr, corresponding to each day and activity.
+
+Example:
+Input: n=3 and arr[]= [[1,2,5],[3,1,1],[3,3,3]]
+Output:11
+Explanation:Geek will learn a new move and earn 5 point then on second day he will do running and earn 3 point and on third day he will do fighting and earn 3 points so, maximum point is 11.
+Expected Time Complexity: O(3*n)
+Expected Space Complexity: O(3*n)
+
+
+
+
+
+        static int f(int day, int last, int[][] points, int[][] dp) {
+        // If the result is already calculated, return it
+        if (dp[day][last] != -1) return dp[day][last];
+
+        // Base case: When it's the first day (day == 0)
+        if (day == 0) {
+            int maxi = 0;
+            for (int i = 0; i <= 2; i++) {
+                if (i != last)
+                    maxi = Math.max(maxi, points[0][i]);
+            }
+            return dp[day][last] = maxi; // Store and return the result
+        }
+
+        int maxi = 0;
+        // Loop through the three activities on the current day
+        for (int i = 0; i <= 2; i++) {
+            if (i != last) {
+                // Calculate the points for the current activity and recursively
+                // calculate the maximum points for the previous day
+                int activity = points[day][i] + f(day - 1, i, points, dp);
+                maxi = Math.max(maxi, activity); // Update the maximum points
+            }
+        }
+
+        return dp[day][last] = maxi; // Store and return the result
+    }
+
+        int dp[][] = new int[n][4];
+        for (int[] row : dp)
+            Arrays.fill(row, -1);
+
+        
+        return f(n - 1, 3, points, dp);
+    }
+
+
+
+
+
+
+-------------------------------------------------------------------------
+Dp on grids or matrices
+Total unique paths 
+There is a robot on an m x n grid. The robot is initially located at the top-left corner (i.e., grid[0][0]). The robot tries to move to the bottom-right corner (i.e., grid[m - 1][n - 1]). The robot can only move either down or right at any point in time.
+Given the two integers m and n, return the number of possible unique paths that the robot can take to reach the bottom-right corner.
+The test cases are generated so that the answer will be less than or equal to 2 * 109.
+ans 
+
+
+
+express evrything in terms of indexes that is in terms of (i,j)
+explore/do all stuffs
+
+
+sum up all the ways / Max,Min
+
+
+(0,0) --> (m-1,n-1)
+number of unique ways
+f(i,j){
+if(i==0 && j==0){ return 1; }
+if(i<0 || j<0) {return 0; }    
+up = f(i-1,j)
+left = f(i,j-1);
+return up + left ;}
+
+
+
+converting it into DP
+since there are overlapping terms present 
+
+MEMOIZATION..........
+Make a tree for bottom up approach
+  while involving DP
+f(i,j){
+if(i==0 && j==0){ return 1; }
+if(i<0 || j<0) {return 0; } 
+if dp[i][j]!=-1 return dp[i][j];   
+up = f(i-1,j)
+left = f(i,j-1);
+return dp[i][j]= up + left ;}
+
+since the last index is m-1 , n-1 
+dp should be 
+dp[m][n]
+
+
+Tabulation........
+1) Declare Base class 
+2) Express all states in for loops
+3) Copy the recurrence and write
+
+
+for(i =0 ; i <m-1;i++){
+    for( j=0; j < n-1 ; j++){ 
+       if(i==0 && j==0) dp[0][0]=1{
+          else {  
+                 if(i>0 && dp[i-1]+dp[j]!=1) up = dp[i-1][j]; 
+                 if(j>0 && dp[i][j-1]!=1) left = dp[i][j-1];
+               
+          dp[i][j]=up+left;
+            }
+        }
+    }
+print dp[m-1][n-1];
+}
+
+
+// whenever there is a case of previous row and previous column we can do space optimization
+
+MINIMUM PATH SUM 
+express in terms of (i,j)
+explore all paths 
+take the minimum path
+
+
+
+f(i,j)  --->
+{
+if(i==0 && j==0) return a[0][0];
+if(i<0 || j<0) return INT_MAX;
+
+up= a[i][j]+f(i-1,j);
+left=a[i][j]+f(1,j-1);
+
+return min(up,left);
+
+
+
+
+After memoization 
+
+f(i,j)  --->
+{
+
+if(i==0 && j==0) return a[0][0];
+if(i<0 || j<0) return INT_MAX;
+if(dp[i][j]!=-1) return dp[i][j];
+up= a[i][j]+f(i-1,j);
+left=a[i][j]+f(1,j-1);
+
+dp[i][j]= min(up,left);
+
+
+
+
+After removing recursion 
+!!!!!!!!!!!!!
+
+
+
+
+
+Partition equal subset sum Leetcode 414 
+at first this is not looking like a DP problem 
+maybe  a two pointer approach will help 
+what i am thinking is 
+sorting the array and running two pointers from both the sides 
+while(i<=j){
+  sum=sum+a[i]; // 1,5,5,11     s=1
+  sum2 = sum2+arr // 1,5,5,11   s2=15
+  while(sum2>=sum)
+       i++
+       sum=sum[i];
+       if(i>=j)
+          break 
+  
+
+
+idts i am coming onto a solution  
+
+
+
+DP on subsequences or subsets 
+any contigous and non contigous part of the array is called subsequences or subsets 
+[1,3,2] --> [1,3],[3,2]
+Subset sum equal to k 
+
+generate all the subsequences and check if any of them gives a sum equal to K 
+Power set and recursion 
+but no need to do that 
+so thats why we will follow the recursion method 
+
+
+
+1) express everything in terms of index // and also consider the base case 
+2) and target too 
+3) explore possibilities of that index 
+
+a[index] is part of  the subsequence |||| a[index] is not a part of the subsequence 
+4) return true or false 
+in the entire array till the index F(n-1,target) is there a subsequence with sum==target 
+
+f(ind,target){
+{
+if(target==0)   return true ;//base case for target 
+if(ind==0)  return(arr[0]==target);
+
+boolean not take = f(ind-1,target);
+
+target ?? if i consider only from 0-->>ind-1 then no need to take that particular index 
+we can finish off with index-1
+
+boolean take =  false 
+if(target>=arr[ind])
+take =f(ind-1,target-a[ind]);
+
+
+return not_take or take ;
+}
+  
+  check the recursion tree       hence everything true 
+                                f(3,4)
+                        f(2,3)            f(2,4)
+                   f(1,2)   f(2,3)   f(1,3)    f(1,4)
+                false  true 
+
+
+
+there are overlapping subproblems 
+recursion time complexity O(2^n)
+
+memoiation 
+
+figure out the changing states 
+(ind) and (target)
+
+ind= 10^3 +1 ;
+target = 10^3+1;
+
+int dp[ind][target];
+
+
+declare the dp array with dp[n][target]
+1) figure out the base case   
+2) form the nested loops (the number of states == number of nested loops 
+
+
+bottom up doesnt mean base case it means neeche wala state se upar wale state tk ka propogation 
+
+
+
+
+
+for(int i =0  ; i --> n-1)  dp[i][0]=true;
+dp[0][a[0]]=true ; // first step will only  be true when the first index is equal to the target 
+for(int j = 1 ; j <n-1;j++){
+   for(target = 1-->k){
+     
+  }
+}
+
+
+
+
+
+import java.uti.*;
+public class Main{
+    public  static void main(String[] Args){
+        Scanner in = new Scanner (System.in);
+        int n = in.nextInt();
+        int k =in.nextInt();
+        int[] arr = new int[n];
+        boolean dp[][] = new boolean[n][k+1];
+        for(int i =0 ; i < n ; i ++){
+            dp[i][0]=true;
+        }
+        if(arr[0]<=k){
+            dp[0][arr[0]]=true ;
+        }
+        for(int n =1 ; ind<n;n++){
+            for(int target =1 ; target <=k;target++){
+                boolean notTaken = dp[ind - 1][target];
+                boolean taken = false;
+                if (arr[ind] <= target) {
+                    taken = dp[ind - 1][target - arr[ind]];
+                }
+                dp[ind][target] = notTaken || taken;
+            }
+        }
+        return dp[n - 1][k];
+    }
+            
+    }
+}
