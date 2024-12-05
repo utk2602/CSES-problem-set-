@@ -1,14 +1,14 @@
 // Make it beautiful array 
-I am kinda struggling with it kyuki i can easily tell if the array given at first is ugly or not but i dont know what to do after that
-one key observation if all the elements are equal then array will always be ugly since u wont be able to reorder it 
-One thing i have in my mind is if i place a number bigger than the next one , then the sum can never be equal 
-okayy so we just have to make sure that the second element is not the culprit
+//I am kinda struggling with it kyuki i can easily tell if the array given at first is ugly or not but i dont know what to do after that
+//one key observation if all the elements are equal then array will always be ugly since u wont be able to reorder it 
+//One thing i have in my mind is if i place a number bigger than the next one , then the sum can never be equal 
+//okayy so we just have to make sure that the second element is not the culprit//
 
 
 
-so the code is 
+//so the code is 
 import java.util.*;
-public class Beautiful {
+public class beautiful {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int t = in.nextInt(); // Number of test cases

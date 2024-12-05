@@ -1,3 +1,89 @@
 My first codeforces contest Div 3 (17-11-2024)
-there were 6 questions and i only was able to solve 3 that too partially , kinda scared for how am i gonna be able to 
-increase my ratings in the future contests 
+rating increased (+462)
+
+
+///Codeforces round 991 DIV3(05-12-2024)
+
+
+text ==(n words ) 
+two strips     which can hold m characters  and as many as needed 
+choose x so that x words in first strip and rest on the second strip 
+words written iwthout gaps but each written entirely on one
+
+
+
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] Args) {
+        Scanner in = new Scanner(System.in);
+        int t = in.nextInt();
+        
+        for (int i = 0; i < t; i++) {
+            int n = in.nextInt();
+            int m = in.nextInt();
+            
+            int[] wordlen = new int[n];
+            for (int j = 0; j < n; j++) {
+                wordlen[j] = in.next().length();
+            }
+            
+            int s = 0;
+            int ans = 0;
+            
+            for (int k = 0; k < n; k++) {
+                if (s + wordlen[k] <= m) {
+                    s += wordlen[k];
+                    ans++;
+                } else {
+                    break;
+                }
+            }
+            
+            System.out.println(ans);
+        }
+        
+        in.close();
+    }
+}
+
+
+
+
+
+
+
+for question two we can run a nested loop but tle exceeded 
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int t = in.nextInt();
+        
+        for (int i = 0; i < t; i++) {
+            int n = in.nextInt();
+            int[] arr = new int[n];
+            int s =0;
+            for (int j = 0; j < n; j++) {
+                arr[j] = in.nextInt();
+                s+=arr[j];
+            }
+            String ans="Yes" ;
+            if(s%n!=0){
+                ans="NO";
+            }
+            int target = s/n;
+            int excess=0;
+            for(int k=0; k < n ; k ++){
+                excess+=arr[k]-target;
+            }
+            if(excess<0){
+                ans="No";
+            }
+            
+            System.out.println(ans);
+        }
+    }
+}
