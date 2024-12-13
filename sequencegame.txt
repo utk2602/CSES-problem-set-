@@ -1,0 +1,30 @@
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while (t-- > 0) {
+            long n = sc.nextLong(); 
+            List<Long> v = new ArrayList<>();
+            List<Long> res = new ArrayList<>();
+            for (long i = 0; i < n; i++) {
+                v.add(sc.nextLong()); 
+            }
+            res.add(v.get(0));
+            for (int i = 1; i < n; i++) {
+                if (v.get(i - 1) > v.get(i)) {
+                    res.add(v.get(i));
+                    res.add(v.get(i));
+                } else {
+                    res.add(v.get(i));
+                }
+            }
+            System.out.println(res.size()); 
+            for (long num : res) {
+                System.out.print(num + " ");
+            }
+            System.out.println();
+        }
+        sc.close();
+    }
+}
