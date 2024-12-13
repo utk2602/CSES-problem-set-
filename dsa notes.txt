@@ -16,7 +16,8 @@ f(n) = f(n-1)+f(n-2)
 
 
 draw the recursionn tree
- n =5 
+n =5 
+
 f(5) points to f(4) and f(3) which points to f(3),f(2) and f(1),f(2) respectively and on...
 overlapping sub problems can be avoided by the use of DP
 Memoization -> we tend to store the value of sub problems in some map/table.
@@ -447,3 +448,25 @@ public class Main{
 }
 
 
+
+
+
+
+Divide and conquer 
+
+divide the problem into smaller chunks 
+divide to the point until the problem is trivial to solve(Base case)
+
+
+clubbing of smaller subproblems (finding of relations)
+used for optimization of the above task -->  dynamic programming overlapping subproblems 
+
+
+pay more attention to the fact that how do u divide the problem 
+overlapping subproblem
+maximize/minimize some value 
+finding number of ways 
+covering all cases 
+check for possibility 
+
+map every single subproblem to a unique identifier
