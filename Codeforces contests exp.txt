@@ -140,3 +140,54 @@ public class transfusion {
         }
     }
 }
+
+
+
+
+
+
+//div 4 15-12-2024
+q3 import java.util.Scanner;
+
+public class InsaneProblem {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        StringBuilder output = new StringBuilder();
+
+        while (t-- > 0) {
+            long k = sc.nextLong();
+            long l1 = sc.nextLong();
+            long r1 = sc.nextLong();
+            long l2 = sc.nextLong();
+            long r2 = sc.nextLong();
+
+            long count = 0;
+            long power = 1;
+
+            while (power <= r2) {
+                long xMin = Math.max(l1, (l2 + power - 1) / power);
+                long xMax = Math.min(r1, r2 / power);
+
+                if (xMin <= xMax) {
+                    count += (xMax - xMin + 1);
+                }
+
+                if (power > r2 / k) {
+                    break;
+                }
+                power *= k;
+            }
+
+            output.append(count).append("\n");
+        }
+
+        System.out.print(output.toString());
+        sc.close();
+    }
+}
+
+
+
+
+q4
